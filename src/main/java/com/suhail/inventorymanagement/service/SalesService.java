@@ -1,9 +1,8 @@
 package com.suhail.inventorymanagement.service;
 
-import com.suhail.inventorymanagement.bean.SaleItem;
-import com.suhail.inventorymanagement.bean.SaleOrder;
+import com.suhail.inventorymanagement.model.SaleItem;
+import com.suhail.inventorymanagement.model.SaleOrder;
 import com.suhail.inventorymanagement.repository.SalesRepository;
-import com.suhail.inventorymanagement.utils.ProductUtils;
 import com.suhail.inventorymanagement.utils.constant.SaleStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +17,13 @@ public class SalesService {
     @Autowired
     private SalesRepository salesRepository;
     @Autowired
-    private ProductUtils productUtils;
+    private StockService stockService;
 
     public SaleOrder addSaleOrder(SaleOrder saleOrder) {
         saleOrder.setSalesStatus(SaleStatus.INPROGRESS);
-        List<SaleItem> saleItemList = saleOrder.getSaleItemList();
-        productUtils.checkStockAvailability(saleItemList);
-        saleOrder.setBillAmount(productUtils.findTotalBillAmount(saleItemList));
+        List<SaleItem> saleItemList = saleOrder.getSaleItems();
+        stockService.checkStockAvailability(saleItemList);
+        saleOrder.setBillAmount(stockService.findTotalBillAmount(saleItemList));
         return salesRepository.save(saleOrder);
     }
 
@@ -61,5 +60,21 @@ public class SalesService {
         }
         final SaleOrder updatedSaleOrder = salesRepository.save(updateSaleOrder);
         return ResponseEntity.ok().body(updatedSaleOrder);
+    }
+
+    public ResponseEntity completeSaleOrder(String id) {
+        Optional<SaleOrder> existingSalesOrder = salesRepository.findById(id);
+        if (!existingSalesOrder.isPresent()) {
+            return ResponseEntity.status(403).body("Invalid purchase order id");
+        }
+
+        SaleOrder saleOrder = existingSalesOrder.get();
+        saleOrder.setSalesStatus(SaleStatus.COMPLETED);
+        salesRepository.save(saleOrder);
+
+        stockService.updateSaleToStock(saleOrder.getSaleItems());
+        salesRepository.save(saleOrder);
+        return ResponseEntity.ok("Salee order successfully placed and updated stock with "
+                + saleOrder.getSaleItems().size() + " items");
     }
 }

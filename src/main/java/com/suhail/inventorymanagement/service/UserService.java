@@ -1,6 +1,6 @@
 package com.suhail.inventorymanagement.service;
 
-import com.suhail.inventorymanagement.bean.User;
+import com.suhail.inventorymanagement.model.User;
 import com.suhail.inventorymanagement.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;

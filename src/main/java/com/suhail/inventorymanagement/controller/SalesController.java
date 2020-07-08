@@ -1,6 +1,6 @@
 package com.suhail.inventorymanagement.controller;
 
-import com.suhail.inventorymanagement.bean.SaleOrder;
+import com.suhail.inventorymanagement.model.SaleOrder;
 import com.suhail.inventorymanagement.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class SalesController {
 
     @GetMapping("/{id}")
     public ResponseEntity getSaleOrder(@PathVariable(value = "String sale-order-id") String id) {
-        return salesService.getSaleOrder( id);
+        return salesService.getSaleOrder(id);
     }
 
     @PutMapping("/{id}")
@@ -36,8 +36,14 @@ public class SalesController {
         return salesService.updateSaleOrder(id.trim(), saleOrder);
     }
 
-    @DeleteMapping("/{id}")
+    @PatchMapping("/cancel/{id}")
     public ResponseEntity cancelSaleOrder(@PathVariable(value = "id") String id) {
         return salesService.cancelSaleOrder(id.trim());
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity completeSaleOrder(@PathVariable(value = "id") String id) {
+        return salesService.completeSaleOrder(id.trim());
+    }
+
 }

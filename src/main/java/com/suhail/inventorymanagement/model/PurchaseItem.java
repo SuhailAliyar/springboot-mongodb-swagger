@@ -1,13 +1,22 @@
-package com.suhail.inventorymanagement.bean;
+package com.suhail.inventorymanagement.model;
 
 import javax.validation.constraints.NotEmpty;
 
-public class SaleItem {
-
+public class PurchaseItem {
     @NotEmpty
     private String productId;
     @NotEmpty
     private double quantity;
+    @NotEmpty
+    private double purchasePrice;
+
+    public double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
 
     public String getProductId() {
         return productId;

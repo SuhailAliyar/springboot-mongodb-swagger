@@ -1,9 +1,9 @@
 package com.suhail.inventorymanagement.repository;
 
-import com.suhail.inventorymanagement.model.User;
+import com.suhail.inventorymanagement.model.PurchaseOrder;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, String> {
+public interface PurchaseRepository extends MongoRepository<PurchaseOrder, String> {
 }

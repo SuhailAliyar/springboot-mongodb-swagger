@@ -1,5 +1,4 @@
-package com.suhail.inventorymanagement.bean;
-
+package com.suhail.inventorymanagement.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

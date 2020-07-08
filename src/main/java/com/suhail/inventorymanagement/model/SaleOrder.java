@@ -1,4 +1,4 @@
-package com.suhail.inventorymanagement.bean;
+package com.suhail.inventorymanagement.model;
 
 import com.suhail.inventorymanagement.utils.constant.SaleStatus;
 import org.springframework.data.annotation.Id;
@@ -16,7 +16,7 @@ public class SaleOrder {
     @NotNull
     private String customerId;
     @NotEmpty
-    private List<SaleItem> saleItemList;
+    private List<SaleItem> saleItems;
     @NotNull
     private double billAmount;
     private SaleStatus saleStatus;
@@ -37,12 +37,12 @@ public class SaleOrder {
         this.customerId = customerId;
     }
 
-    public List<SaleItem> getSaleItemList() {
-        return saleItemList;
+    public List<SaleItem> getSaleItems() {
+        return saleItems;
     }
 
-    public void setSaleItemList(List<SaleItem> saleItemList) {
-        this.saleItemList = saleItemList;
+    public void setSaleItems(List<SaleItem> saleItems) {
+        this.saleItems = saleItems;
     }
 
     public double getBillAmount() {

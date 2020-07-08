@@ -1,6 +1,6 @@
 package com.suhail.inventorymanagement.repository;
 
-import com.suhail.inventorymanagement.bean.Product;
+import com.suhail.inventorymanagement.model.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

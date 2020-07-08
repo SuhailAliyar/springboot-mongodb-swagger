@@ -1,6 +1,6 @@
 package com.suhail.inventorymanagement.controller;
 
-import com.suhail.inventorymanagement.bean.User;
+import com.suhail.inventorymanagement.model.User;
 import com.suhail.inventorymanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
