@@ -16,3 +16,8 @@ This will create the build the appliation and generates a jar file under the tar
 **How to run the application**
 
 Step 1. java -jar target/inventory-management-0.0.1-SNAPSHOT.jar 
+
+
+**To accesss via Swagger**
+
+Step 1. Visit http://localhost:8080/swagger-ui.html
