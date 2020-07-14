@@ -14,4 +14,5 @@ This will create the build the appliation and generates a jar file under the tar
 
 
 #How to run the application
-java -jar target/inventory-management-0.0.1-SNAPSHOT.jar 
+
+Step 1. java -jar target/inventory-management-0.0.1-SNAPSHOT.jar 
